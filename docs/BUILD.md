@@ -4,11 +4,42 @@ See the various requirements and suggested system configurations at [Requirement
 
 Openbmp is built and installed using 'cmake' to build the makefiles. 
 
+Ubuntu 14.04
+------------
+### Install Ubuntu 14.04
+Install standard Ubuntu 14.04/Trusty server image [Ubuntu Download](http://www.ubuntu.com/download)
+
+### Install the dependancies
+
+``` 
+sudo apt-get install gcc g++ libboost-dev cmake zlib1g-dev libssl1.0.0 libsasl2-2 libssl-dev libsasl2-dev 
+```
+
+RHEL7/CentOS7
+-------------
+
+### Install RHEL7 or CentOS 7.  
+We use CentOS 7 minimal.  [CentOS 7 Download](http://www.centos.org/download/)
+
+### Install basic dependancies
+```
+sudo yum install -y gcc gcc-c++ libstdc++-devel boost-devel cmake git wget openssl-libs openssl-devel cyrus-sasl-devel cyrus-sasl-lib
+```
+
+
+RHEL6/CentOS6 (6.5) - Legacy support
+------------------------------------
+
+### Install RHEL6 or CentOS 6.  
+We use CentOS 6 minimal.  [CentOS 6 Download](http://wiki.centos.org/Download)
+
+### Install basic dependancies
+```
+sudo yum install -y gcc gcc-c++ libstdc++-devel boost-devel boost-static cmake git wget  openssl-libs openssl-devel cyrus-sasl-devel cyrus-sasl-devel cyrus-sasl-lib
+```
 
 All Platforms (Ubuntu, CentOS, etc.)
 ------------------------------------
-
-> #### YOU MUST INSTALL DEPENDS BEFORE BUILDING librdkafka and libyaml-cpp
 
 ### Install librdkafka development and runtime libraries
 
@@ -44,41 +75,6 @@ cmake -DBUILD_SHARED_LIBS=OFF ..
 make
 sudo make install
 ```
-
-Ubuntu 14.04
-------------
-### Install Ubuntu 14.04
-Install standard Ubuntu 14.04/Trusty server image [Ubuntu Download](http://www.ubuntu.com/download)
-
-### Install the dependancies
-
-``` 
-sudo apt-get install gcc g++ libboost-dev cmake zlib1g-dev libssl1.0.0 libsasl2-2 libssl-dev libsasl2-dev 
-```
-
-RHEL7/CentOS7
--------------
-
-### Install RHEL7 or CentOS 7.  
-We use CentOS 7 minimal.  [CentOS 7 Download](http://www.centos.org/download/)
-
-### Install basic dependancies
-```
-sudo yum install -y gcc gcc-c++ libstdc++-devel boost-devel cmake git wget openssl-libs openssl-devel cyrus-sasl-devel cyrus-sasl-lib
-```
-
-
-RHEL6/CentOS6 (6.5) - Legacy support
-------------------------------------
-
-### Install RHEL6 or CentOS 6.  
-We use CentOS 6 minimal.  [CentOS 6 Download](http://wiki.centos.org/Download)
-
-### Install basic dependancies
-```
-sudo yum install -y gcc gcc-c++ libstdc++-devel boost-devel boost-static cmake git wget  openssl-libs openssl-devel cyrus-sasl-devel cyrus-sasl-devel cyrus-sasl-lib
-```
-
 
 Compiling Source (All Platforms)
 -------------------------------------
