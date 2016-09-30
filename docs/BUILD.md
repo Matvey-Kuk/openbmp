@@ -26,12 +26,22 @@ We use CentOS 7 minimal.  [CentOS 7 Download](http://www.centos.org/download/)
 sudo yum install -y gcc gcc-c++ libstdc++-devel boost-devel cmake git wget openssl-libs openssl-devel cyrus-sasl-devel cyrus-sasl-lib
 ```
 
-
 RHEL6/CentOS6 (6.5) - Legacy support
 ------------------------------------
 
 ### Install RHEL6 or CentOS 6.  
 We use CentOS 6 minimal.  [CentOS 6 Download](http://wiki.centos.org/Download)
+
+### Install basic dependancies
+```
+sudo yum install -y gcc gcc-c++ libstdc++-devel boost-devel boost-static cmake git wget  openssl-libs openssl-devel cyrus-sasl-devel cyrus-sasl-devel cyrus-sasl-lib
+```
+
+OS X EL Capitan 10.11.6
+------------------------------------
+
+### Install Homebrew.  
+[Homebrew installation web page](http://brew.sh/index.html)
 
 ### Install basic dependancies
 ```
@@ -87,7 +97,9 @@ Do the following:
     cd openbmp
     mkdir build
     cd build
-    cmake -DCMAKE_INSTALL_PREFIX:PATH=/usr ../  
+    cmake -DCMAKE_INSTALL_PREFIX:PATH=/usr ../ 
+    # IF on OS X - you might run into an issue about OpenSSL. # If you run into this issue, you can specify OpenSSL location using:
+    # cmake -DOPENSSL_ROOT_DIR=/usr/local/opt/openssl  -DOPENSSL_INCLUDE_DIR=/usr/local/opt/openssl/include ../
     make
 
 ### Example output
