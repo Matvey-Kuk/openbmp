@@ -966,7 +966,7 @@ void msgBus_kafka::update_LsNode(obj_bgp_peer &peer, obj_path_attr &attr, std::l
 
                     if (i == 0)
                         strcat(isis_area_id, ".");
-                }
+            }
         }
 
         buf_len += snprintf(buf2, sizeof(buf2),

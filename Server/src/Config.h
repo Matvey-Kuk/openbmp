@@ -28,15 +28,16 @@ using namespace boost::xpressive;
  */
 class Config {
 public:
-    u_char      c_hash_id[16];            ///< Collector Hash ID (raw format)
-    char        admin_id[64];             ///< Admin ID
+    u_char      c_hash_id[16];                    ///< Collector Hash ID (raw format)
+    char        admin_id[64];                     ///< Admin ID
 
-    std::string kafka_brokers;            ///< metadata.broker.list
-    uint16_t    bmp_port;                 ///< BMP listening port
+    std::string kafka_brokers;                    ///< metadata.broker.list
+    uint16_t    bmp_port;                         ///< BMP listening port
+    uint16_t    startup_max_concurrent_routers; 
 
-    int         bmp_buffer_size;          ///< BMP buffer size in bytes (min is 2M max is 128M)
-    bool        svr_ipv4;                 ///< Indicates if server should listen for IPv4 connections
-    bool        svr_ipv6;                 ///< Indicates if server should listen for IPv6 connections
+    int         bmp_buffer_size;                  ///< BMP buffer size in bytes (min is 2M max is 128M)
+    bool        svr_ipv4;                         ///< Indicates if server should listen for IPv4 connections
+    bool        svr_ipv6;                         ///< Indicates if server should listen for IPv6 connections
 
     bool        debug_general;
     bool        debug_bgp;
@@ -44,15 +45,15 @@ public:
     bool        debug_msgbus;
 
     int         heartbeat_interval;      ///< Heartbeat interval in seconds for collector updates
-    int   	tx_max_bytes;            ///< Maximum transmit message size
-    int 	rx_max_bytes;            ///< Maximum receive  message size
-    int 	session_timeout;         ///< Client session timeout  
-    int 	socket_timeout;          ///< Network requests timeout  
+    int         tx_max_bytes;            ///< Maximum transmit message size
+    int         rx_max_bytes;            ///< Maximum receive  message size
+    int         session_timeout;         ///< Client session timeout  
+    int         socket_timeout;          ///< Network requests timeout  
     int         q_buf_max_msgs;          ///< Max msgs allowed in producer queue
-    int         q_buf_max_ms;		 ///< Max time for buffering msgs in queue
+    int         q_buf_max_ms;            ///< Max time for buffering msgs in queue
     int         msg_send_max_retry;      ///< No. of times to resend failed msgs
     int         retry_backoff_ms;        ///< Backoff time before resending msgs  
-    std::string compression;		 ///< Compression to use :none, gzip, snappy
+    std::string compression;             ///< Compression to use :none, gzip, snappy
 
     /**
      * matching structs and maps

@@ -30,25 +30,26 @@
 Config::Config() {
 
     // Initialize the defaults
-    bmp_port            = 5000;
-    debug_general       = false;
-    debug_bgp           = false;
-    debug_bmp           = false;
-    debug_msgbus        = false;
-    bmp_buffer_size     = 15 * 1024 * 1024; // 15MB
-    svr_ipv6            = false;
-    svr_ipv4            = true;
-    heartbeat_interval  = 60 * 5;        // Default is 5 minutes
-    kafka_brokers       = "localhost:9092";
-    tx_max_bytes        = 1000000;
-    rx_max_bytes        = 100000000;
-    session_timeout     = 30000;	// Default is 30 seconds
-    socket_timeout	= 60000; 	// Default is 60 seconds
-    q_buf_max_msgs      = 100000;   
-    q_buf_max_ms        = 1000;         // Default is 1 sec
-    msg_send_max_retry  = 2;
-    retry_backoff_ms    = 100;
-    compression         = "snappy";
+    bmp_port                        = 5000;
+    startup_max_concurrent_routers  = 2;
+    debug_general                   = false;
+    debug_bgp                       = false;
+    debug_bmp                       = false;
+    debug_msgbus                    = false;
+    bmp_buffer_size                 = 15 * 1024 * 1024; // 15MB
+    svr_ipv6                        = false;
+    svr_ipv4                        = true;
+    heartbeat_interval              = 60 * 5;        // Default is 5 minutes
+    kafka_brokers                   = "localhost:9092";
+    tx_max_bytes                    = 1000000;
+    rx_max_bytes                    = 100000000;
+    session_timeout                 = 30000;	// Default is 30 seconds
+    socket_timeout                  = 60000; 	// Default is 60 seconds
+    q_buf_max_msgs                  = 100000;   
+    q_buf_max_ms                    = 1000;         // Default is 1 sec
+    msg_send_max_retry              = 2;
+    retry_backoff_ms                = 100;
+    compression                     = "snappy";
 
     bzero(admin_id, sizeof(admin_id));
 
@@ -165,7 +166,6 @@ void Config::parseBase(const YAML::Node &node) {
         }
     }
 
-
     if (node["listen_mode"]) {
         try {
             value = node["listen_mode"].as<std::string>();
@@ -185,6 +185,20 @@ void Config::parseBase(const YAML::Node &node) {
 
         } catch (YAML::TypedBadConversion<std::string> err) {
             printWarning("listen_mode is not of type string", node["listen_mode"]);
+        }
+    }
+
+    if (node["startup"]) {
+        std::cout << "321" << std::endl;
+        if (node["startup"]["max_concurrent_routers"]) {
+            try { 
+                startup_max_concurrent_routers = node["startup"]["max_concurrent_routers"].as<int>();
+                std::cout << "Max conc conn: " << startup_max_concurrent_routers << std::endl;
+                if (debug_general)
+                    std::cout << "Config: startup max concurrent routers: " << startup_max_concurrent_routers << std::endl;
+            } catch (YAML::TypedBadConversion<std::string> err) {
+                printWarning("listen_mode is not of type string", node["listen_mode"]);
+            }
         }
     }
 
